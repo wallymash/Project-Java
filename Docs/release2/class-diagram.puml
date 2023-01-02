@@ -1,0 +1,77 @@
+@startuml class diagram 
+
+class Bank {
+  -String name
+  -long lastUsedAccountNumber
+  -arrayList<User> users
+
+  +Bank(String)
+  +Bank()
+  +void addUser(User)
+  +User getUser(long)
+  -Account accountExist(long)
+  +void transfer(long, long, double)
+  +void registerUser(User)
+  
+  +void logIn(User)
+  +long generateAccountNumber(long)
+  +void setUsers(ArrayList<User>)
+  +ArrayList<User> getUsers()
+  +void setLastUsedAccountNumber(long)
+  +long getLastUsedAccountNumber()
+  +void setName(String)
+  +String getName()
+  
+  
+  
+}
+
+class User {
+  -ArrayList<Account> accounts
+  -long socialSecurityNumber
+  -String password
+
+  +User(long, String)
+  +User()
+  +void addAccount(Account)
+  -boolean containsDigit(String)
+  -boolean containsLetter(String)
+  -void isValidPassword(String)
+  -void isValidSocialSecurityNumber(long)
+  +void setSocialSecurityNumber(long)
+  +long getSocialSecurityNumber()
+  +void setPassword(String)
+  +String getPassword()
+  +ArrayList<Account> getAccounts()
+
+}
+
+class Account {
+  -double balance
+  -long accountNumber
+  -String accountName 
+  +Account(long,double)
+  +Account()
+  +void deposit(double)
+  +void withdraw(double)
+  +void setAccountNumber(long)
+  +long getAccountNumber()
+  +void setBalance(double)
+  +double getBalance()
+  +void setAccountName(String)
+  +String getAccountName() 
+}
+
+class SavingAccount {
+   -int withdrawCount
+   -double rentPercentage
+   -Timer timer
+   
+   +SavingAccount(long,double)
+   +void withdraw(double)
+   +int getWithdrawCount()
+}
+User "1" *-- "n" Account
+Bank "1" *-- "n" User
+Account <|--- SavingAccount
+@enduml

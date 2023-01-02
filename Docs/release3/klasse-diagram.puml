@@ -1,0 +1,107 @@
+@startuml class diagram
+
+class Bank {
+  -String name
+  -long lastUsedAccountNumber
+  -ArrayList<User> users
+
+  +Bank(String)
+  +Bank()
+  +void addInterest(Long, int)
+  +void addUser(User)
+  +User getUser(long)
+  +User getUser(Account)
+  +Account getAccount(long) 
+  +void transfer(long, long, double)
+  +void registerUser(User)
+  +void logIn(User)
+  +long generateAccountNumber(long)
+  +String getName()
+  +void setName(String
+  +void setLastUsedAccountNumber(long)
+  +long getLastUsedAccountNumber()
+  +ArrayList<User> getUsers()
+  +User deleteUser(long) 
+}
+
+
+class User {
+  -long socialSecurityNumber
+  -String password
+  -ArrayList<Account> accounts
+  -ArrayList<Transaction> transactionHistory
+  -int lastLoginnTime
+
+  +User()
+  +User(long, String)
+  +void addAccount(Account)
+  +void addTransaction(Transaction)
+  -boolean containsDigit(String)
+  -boolean containsLetter(String)
+  -void isValidPassword(String)
+  -void isValidSocialSecurityNumber(long)
+  +void setSocialSecurityNumber(long)
+  +long getSocialSecurityNumber()
+  +void setPassword(String)
+  +String getPassword()
+  +void setLastLoginnTime(int)
+  +int getLastLoginnTime()
+  +ArrayList<Account> getAccounts()
+  +ArrayList<Transaction> getTransactionHistory()
+
+
+}
+
+class Account {
+  -double balance
+  -long accountNumber
+  -String accountName 
+
+  +Account(long,double)
+  +Account()
+  +void withdraw(double)
+  +void deposit(double)
+  +void setBalance(double)
+  +double getBalance()
+  +void setAccountName(String)
+  +String getAccountName()
+  +void setAccountNumber(long)
+  +long getAccountNumber()
+  -double roundedAmount(double)
+}
+
+
+class SavingAccount {
+   -int withdrawCount
+
+   +SavingAccount(long,double)
+   +void withdraw(double)
+   +int getWithdrawCount()
+}
+
+class Transaction {
+  -long from
+  -long to
+  -double amount
+  -String date
+
+  +Transaction(long,long,double)
+  +Transaction()
+  +String getDate()
+  +long getFrom()
+  +void setFrom(long)
+  +long getTo()
+  +void setTo(long)
+  +double getAmount()
+  +void setAmount(double)
+  +void setDate(String)
+  -double roundedAmount(double)
+  -String dateToString(Date)
+
+}
+
+User "1" *-- "n" Account
+Bank "1" *-- "n" User
+Account <|--- SavingAccount
+User "1" *-- "n" Transaction
+@enduml

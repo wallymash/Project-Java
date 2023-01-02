@@ -1,0 +1,56 @@
+@startuml sequencediagram
+
+group Register a new User
+actor Bob
+Bob -> gui: click "register"
+gui -> gui: serialize
+gui -> rest: {POST}register()
+rest -> rest: derserialize
+rest -> core: register()
+core -> core: validate
+core -> core: serialize
+core -> database: save to database
+
+core <-- database: success
+rest <-- core: added
+gui <-- rest: response
+gui -> gui: **updateTableView()**
+Bob <-- gui: Registration complete
+end
+
+
+
+group login and deposit
+Bob -> gui : click "login"
+gui -> rest: {GET} getUser(12345678901)
+rest -> core: getUser(12345678901)
+
+core -> database: read from database
+core <-- database: return Json string
+core -> core: derserialize()
+core -> core: validate
+rest <-- core: return User
+rest -> rest: serialize
+gui <-- rest: response
+gui -> gui: deserialize
+gui -> gui: **updateTableView()**
+Bob <-- gui: Display User accounts\n and Transactions
+
+Bob -> gui: click "Deposit"
+gui -> rest: {PUT}deposit(5000)
+rest -> core: deposit(5000)
+core -> core: validate  
+core -> database: update the users balance
+
+core <-- database: success
+rest <-- core: success
+gui <-- rest: response
+gui -> gui: **updateTableView()**
+Bob <-- gui: Display the \n updated tableview 
+
+end
+
+
+
+
+@enduml

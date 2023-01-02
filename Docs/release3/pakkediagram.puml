@@ -1,0 +1,41 @@
+@startuml pakkediagram
+
+folder bank #DDDDDD {
+
+  component core #ffffff{
+    package bank.core #ffd966
+    package bank.json #ffd966
+  }
+
+  component jackson #ffffff{
+  }
+
+  bank.core ..> bank.json
+  bank.json ..> jackson
+
+  component rest #ffffff{
+    package bank.rest #ffd966
+  }
+
+  component springboot #ffffff{
+  }
+
+  rest ..> springboot
+
+  component gui #ffffff {
+    package java.gui.bank #ffd966
+    package resource.gui.bank #ffd966
+  }
+ 
+  component javafx #ffffff {
+    component fxml #ffffff {
+    }
+  }
+
+  gui ..> javafx
+  bank.rest ..> core
+  java.gui.bank ..> core
+
+}
+
+@enduml

@@ -1,0 +1,19 @@
+{
+  "name" : "Norges Bank",
+  "lastUsedAccountNumber" : 12040000026,
+  "users" : [ {
+    "socialSecurityNumber" : 12345678933,
+    "password" : "messi123",
+    "lastLoginnTime" : 2023,
+    "accounts" : [ {
+      "accountName" : "User account",
+      "accountNumber" : 12040000025,
+      "balance" : 0.0
+    }, {
+      "accountName" : "saving account",
+      "accountNumber" : 12040000026,
+      "balance" : 0.0
+    } ],
+    "transactionHistory" : [ ]
+  } ]
+}
